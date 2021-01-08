@@ -107,7 +107,7 @@ with torch.no_grad():
     print('Accuracy:', accuracy.item())
 
 x = torch.randn(batch_size, 1, 28, 28, requires_grad=True)
-# x.to(device)
+
 model.to('cpu')
 torch.onnx.export(model,
                 x,
@@ -119,3 +119,4 @@ torch.onnx.export(model,
                 output_names=['output'],
                 dynamic_axes={'input' : {0 : 'batch_size'},    # 가변적인 길이를 가진 차원
                                 'output' : {0 : 'batch_size'}})
+print("Exporting onnx finished")
